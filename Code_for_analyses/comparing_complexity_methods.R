@@ -24,7 +24,7 @@ library(MASS)
 
 
 
-# Read in the csv containing the results of all the methods
+# Read in the .csv containing the results for all the compared methods
 method_results <- read.csv('Analysis/all_complexity_results.csv')
 # Extract the necessary data into a variable
 data <- dplyr::select(method_results, 2:6)
@@ -32,7 +32,6 @@ data <- dplyr::select(method_results, 2:6)
 
 
 # The number of specimens
-  # Julien used a phylogney here to illustrate a hierarchical structure
 clust <- pbtree(n=79)
 # Plot the phylogeny
 plotTree(clust)
@@ -52,11 +51,11 @@ res.pca <- dudi.pca(data,
 
 ####################################################################################################
 
-# Plotting PCAs to compare the different methods - using factoextra package
+# Plotting PCA of the complexity scores to compare the different methods - using factoextra package
 
-# This method used for a figure
+
 # Plot a PCA with just the variables - ie the different methods compared
-# This plot also highlights the different method arrows in different colours to show how much each one contributes to the variability
+# This plot highlights the different method arrows in different colours to show how much each one contributes to the variability
 fviz_pca_var(res.pca,
              col.var = "contrib", 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
@@ -65,18 +64,12 @@ fviz_pca_var(res.pca,
 )
 
 
-# This code below plots the method trajectories with the specimens with the eigenvalues for each PC.
+# Plots the method trajectories with the specimens with the eigenvalues for each PC
 scatter(res.pca, xax = 1, yax = 2)
 
 
-# To see the eigenvalue contribution of each PC:
-biplot(res.pca)
-
-
-# Accessing eigenvalues for the method trajectory comparison PCA
+# Access the eigenvalues for the method trajectory comparison PCA
 summary(res.pca)
-
-
 
 
 # Plot a PCA with both the specimens (n=79) and the variables (methods used)
@@ -86,46 +79,15 @@ fviz_pca_biplot(res.pca, repel = TRUE,
 )
 
 
-###################################################################################################
-
-
-# Comparing methods by plotting PCAs - using ade4 package 
-# Similar to factoextra package
-
-
-# PCA data calculated higher up, using ade4 - dudi.pca function
-res.pca
-
-
-# PCA circle - method contributions
-s.corcircle(res.pca$co)
-
-
-# A scatter plot with all the specimens and the method used represented as arrows
-scatter(res.pca,
-        posieig = "none", # Cacher le scree plot
-        clab.row = 0      # Caché l'annotation de slignes
-)
-
-
 
 #####################################################################################################
 
 # Clustering plotting to compare the methods
 
-# Now we can also use a clustering approach (eg hierarchical cluster) or kmean to define distincts groupings (e.g. the 2 methods tested)
+# Using a clustering approach (eg hierarchical cluster) or kmean to define distincts groupings (e.g different suture morphology groups - based on hypotheses)
 clusters <- kmeans(data, 3)
 
 
-# Using ade4 package
-# Clustering plot without labelling specimens and not on a PCA plot
-groups <- as.factor(clusters$cluster)
-s.class(res.pca$li,
-        fac = groups,  # colorer par groupes
-        col = 1:3#c("#00AFBB",  "#FC4E07")
-)
-
-# This method used for a figure
 # Using factoextra package
 # Clustering plot with labelled specimens on a PCA with the method trajectories
 fviz_pca_biplot(res.pca,
@@ -138,27 +100,11 @@ fviz_pca_biplot(res.pca,
 )
 
 
-# Clustering plot with labelled specimens on a PCA without the method trajectories
-fviz_pca_ind(res.pca,
-              col.ind = groups, # colorer par groupes
-              palette = 1:3,#c("#00AFBB",  "#FC4E07"),
-              addEllipses = TRUE, # Ellipses de concentrations
-              ellipse.type = "confidence",
-              legend.title = "Groups",
-              repel = TRUE
-)
-
-
 
 ###########################################################################################
 
 
 # Corrplot
-
-
-# Corrplot allows a comparison between the methods, shows if they are similarly related or not.
-# This is better than doing regression analysis as regression analysis relies on which you choose as predictor or dependent
-
 
 # Input data 'data' = matrix with specimens listed and every method result for each specimen
 # cor function calculates the correlation between x and y.
@@ -177,27 +123,20 @@ corrplot(cor, p.mat = res1$p, insig = "label_sig", sig.level = c(.001, .01, .05)
 corrplot.mixed(cor, lower = "number", upper = "circle")
 
 
-# Can also calculate the covariances of x and y
+# Calculate the covariances of x and y
 cov <- cov(data)
 # Can't plot a corrplot for this as the values are not within the range of -1, 1
 
 
-# Can also calculate the variance of x
+# Calculate the variance of x
 var <- var(data)
 # Can't plot a corrplot for this as the values are not within the range of -1, 1
 
 
-write.csv(cor, "/Users/heatherwhite/Documents/PhD/PhD/R_Projects/suture_methods_comparison/Analysis/Method_correlations.csv")
-write.csv(cov, "/Users/heatherwhite/Documents/PhD/PhD/R_Projects/suture_methods_comparison/Analysis/Method_covariances.csv")
-# Saving method variances in R - not a matrix so can't save a csv
-save(var, file='Analysis/Method_variances.R')
-
-
-
-# Example of a corrplot for the dimensions of a PCA.
-var <- get_pca_var(res.pca)
-corrplot(corrgram(var$cos2), is.corr = FALSE) # Using the corrgram function converts the 'var' variable to a matrix needed for corrplot
-
+write.csv(cor, "Y:/xxx/xxx/xxx.csv")
+write.csv(cov, "Y:/xxx/xxx/xxx.csv")
+# Save method variances in R
+save(var, file='Y:/xxx/xxx/xxx.R')
 
 
 
@@ -210,8 +149,8 @@ corrplot(corrgram(var$cos2), is.corr = FALSE) # Using the corrgram function conv
 
 # Extracting PC loadings for first 3 PCs
 pc_loadings <- res.pca$c1 # c1 = loadings of variables
-write.csv(pc_loadings, "/Users/heatherwhite/Documents/PhD/PhD/R_Projects/suture_methods_comparison/Analysis/PC_loadings.csv")
-pc_loadings2 <- read.csv('Analysis/PC_loadings.csv') # To get the method headings in the dataframe
+write.csv(pc_loadings, "Y:/xxx/xxx/xxx.csv")
+pc_loadings2 <- read.csv('Y:/xxx/xxx/xxx/PC_loadings.csv') # To get the method headings in the dataframe
 
 # The variables' coordinates - normed to the square roots of the eigenvalues
 # c1 is calculated from these co values
