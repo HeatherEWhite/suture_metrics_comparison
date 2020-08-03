@@ -65,10 +65,10 @@ As above outlined above in 'Data' including a sub-folder 'Resampled_landmarks' c
 
 
 
-## License :page_with_curl:
+## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/HeatherEWhite/suture_complexity_metrics/blob/master/LICENSE) file for details
 
-## Session Info :clipboard:
+## Session Info
 For reproducibility purposes, here is the output of `devtools::session_info()` used to perform the analyses in the publication. 
 
 ```{r}
