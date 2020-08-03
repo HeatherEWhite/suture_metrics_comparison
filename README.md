@@ -45,7 +45,7 @@ In this repository you will find raw data (.csv) and code for analyses (code sup
 As above outlined above in 'Data' including a sub-folder 'Resampled_landmarks' containing 2D landmarks used for analysis.
 
  :file_folder:
-* **Code**
+* **Code_for_analyses**
 
 `calculating_fractal_dimension.R`
 
