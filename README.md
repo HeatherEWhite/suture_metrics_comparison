@@ -18,7 +18,7 @@ __To cite this repo__:
 
 > White HW, Clavel J, Abigail S Tucker, Goswami A. A comparison of complexity metrics for quantifying cranial suture complexity. Journal of the Royal Society Interface. 2020. Github: https://github.com/HeatherEWhite/suture_metrics_comparison plus the Zenodo DOI: https://doi.org/10.5281/zenodo.4037220
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4037220.svg)] (https://doi.org/10.5281/zenodo.4037220)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4037220.svg)](https://doi.org/10.5281/zenodo.4037220)
 
 
 
